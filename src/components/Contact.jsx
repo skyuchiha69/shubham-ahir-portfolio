@@ -1,6 +1,6 @@
 import React from 'react';
 import { personalData } from '../data/portfolioData';
-import { Mail, FileText, ArrowUpRight, CheckCircle, Info } from 'lucide-react';
+import { Mail, ArrowUpRight, FileText } from 'lucide-react';
 import { GithubIcon, LinkedinIcon } from './Icons';
 
 export default function Contact() {
@@ -25,7 +25,7 @@ export default function Contact() {
         <div className="contact-editorial-card">
           <div className="contact-inner-grid">
             
-            {/* Left Column: Heading and Intent */}
+            {/* Left Column: Heading, Intent & Enrollment Info */}
             <div className="contact-copy-col">
               <span className="editorial-kicker">INTERNSHIP OPPORTUNITIES</span>
               <h3 className="contact-main-heading">
@@ -47,87 +47,99 @@ export default function Contact() {
               </div>
             </div>
 
-            {/* Right Column: Interactive Buttons or Configuration Guide */}
+            {/* Right Column: Working Contact Channels */}
             <div className="contact-actions-col">
               {hasDirectLinks ? (
-                <div className="contact-buttons-wrapper">
+                <div className="contact-channels-list" role="list" aria-label="Direct Contact Channels">
+                  
+                  {/* Email Option */}
                   {contact.email && (
                     <a
                       href={`mailto:${contact.email}`}
-                      className="btn btn-primary contact-cta-btn"
+                      className="contact-channel-item"
+                      role="listitem"
+                      aria-label={`Email Me: ${contact.email}`}
                     >
-                      <Mail size={17} aria-hidden="true" />
-                      <span>Email Directly</span>
-                      <ArrowUpRight size={15} aria-hidden="true" />
+                      <div className="channel-icon-wrapper">
+                        <Mail size={19} className="channel-icon" aria-hidden="true" />
+                      </div>
+                      <div className="channel-content">
+                        <span className="channel-name">Email Me</span>
+                        <span className="channel-detail">{contact.email}</span>
+                      </div>
+                      <ArrowUpRight size={17} className="channel-arrow" aria-hidden="true" />
                     </a>
                   )}
 
-                  {contact.linkedin && (
-                    <a
-                      href={contact.linkedin}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="btn btn-secondary contact-cta-btn"
-                    >
-                      <LinkedinIcon size={17} aria-hidden="true" />
-                      <span>LinkedIn Profile</span>
-                      <ArrowUpRight size={15} aria-hidden="true" />
-                    </a>
-                  )}
-
+                  {/* GitHub Profile */}
                   {contact.github && (
                     <a
                       href={contact.github}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="btn btn-secondary contact-cta-btn"
+                      className="contact-channel-item"
+                      role="listitem"
+                      aria-label="GitHub Profile"
                     >
-                      <GithubIcon size={17} aria-hidden="true" />
-                      <span>GitHub Profile</span>
-                      <ArrowUpRight size={15} aria-hidden="true" />
+                      <div className="channel-icon-wrapper">
+                        <GithubIcon size={19} className="channel-icon" aria-hidden="true" />
+                      </div>
+                      <div className="channel-content">
+                        <span className="channel-name">GitHub</span>
+                        <span className="channel-detail">
+                          {contact.github.replace('https://', '')}
+                        </span>
+                      </div>
+                      <ArrowUpRight size={17} className="channel-arrow" aria-hidden="true" />
                     </a>
                   )}
 
+                  {/* LinkedIn Profile */}
+                  {contact.linkedin && (
+                    <a
+                      href={contact.linkedin}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="contact-channel-item"
+                      role="listitem"
+                      aria-label="LinkedIn Profile"
+                    >
+                      <div className="channel-icon-wrapper">
+                        <LinkedinIcon size={19} className="channel-icon" aria-hidden="true" />
+                      </div>
+                      <div className="channel-content">
+                        <span className="channel-name">LinkedIn</span>
+                        <span className="channel-detail">
+                          {contact.linkedin.replace('https://www.', '').replace('https://', '')}
+                        </span>
+                      </div>
+                      <ArrowUpRight size={17} className="channel-arrow" aria-hidden="true" />
+                    </a>
+                  )}
+
+                  {/* Optional Résumé Download */}
                   {contact.resumeUrl && (
                     <a
                       href={contact.resumeUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="btn btn-secondary contact-cta-btn"
+                      className="contact-channel-item"
+                      role="listitem"
+                      aria-label="Download Official Résumé PDF"
                     >
-                      <FileText size={17} aria-hidden="true" />
-                      <span>View Résumé PDF</span>
-                      <ArrowUpRight size={15} aria-hidden="true" />
+                      <div className="channel-icon-wrapper">
+                        <FileText size={19} className="channel-icon" aria-hidden="true" />
+                      </div>
+                      <div className="channel-content">
+                        <span className="channel-name">Download Résumé</span>
+                        <span className="channel-detail">Official PDF Format</span>
+                      </div>
+                      <ArrowUpRight size={17} className="channel-arrow" aria-hidden="true" />
                     </a>
                   )}
+
                 </div>
-              ) : (
-                /* Honest Configuration Guide when links are not yet set */
-                <div className="contact-pending-card" role="region" aria-label="Contact Channel Setup">
-                  <div className="pending-header">
-                    <Info size={18} className="pending-icon" aria-hidden="true" />
-                    <span className="pending-title">Contact Channels Ready for Configuration</span>
-                  </div>
-                  <p className="pending-desc">
-                    To connect your direct email, GitHub, LinkedIn, or résumé without broken links:
-                  </p>
-                  <ol className="pending-steps">
-                    <li>
-                      Open <code>src/data/portfolioData.js</code>
-                    </li>
-                    <li>
-                      Update <code>email</code>, <code>github</code>, or <code>linkedin</code>
-                    </li>
-                    <li>
-                      Direct, interactive buttons will automatically appear right here!
-                    </li>
-                  </ol>
-                  <div className="pending-footer">
-                    <CheckCircle size={14} aria-hidden="true" />
-                    <span>Zero dead buttons or placeholder mock links on this site.</span>
-                  </div>
-                </div>
-              )}
+              ) : null}
             </div>
 
           </div>

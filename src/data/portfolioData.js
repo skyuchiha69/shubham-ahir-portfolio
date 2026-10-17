@@ -50,13 +50,11 @@ export const personalData = {
     subheading:
       "I'm interested in learning, building and contributing to meaningful software projects through internship opportunities.",
     
-    // IMPORTANT: Verified contact links. Set to string URL when ready.
-    // If left as null, the public site cleanly indicates contact readiness
-    // without producing dead buttons or broken links.
-    email: null,        // e.g. "yourname@gsfcuniversity.ac.in" or "shubham@example.com"
-    github: null,       // e.g. "https://github.com/shubham-ahir"
-    linkedin: null,     // e.g. "https://linkedin.com/in/shubham-ahir"
-    resumeUrl: null,    // e.g. "/resume/Shubham_Ahir_Resume.pdf"
+    // Confirmed contact links
+    email: "shubhamahir2525@gmail.com",
+    github: "https://github.com/skyuchiha69",
+    linkedin: "https://www.linkedin.com/in/shubham-ahir-a4781330a",
+    resumeUrl: null, // Set when official resume PDF is placed in public/resume/
   }
 };
 
