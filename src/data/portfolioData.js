@@ -98,8 +98,33 @@ export const educationData = [
     status: "Current (5th Semester)",
     type: "Undergraduate Degree",
     notes: "Focusing on core computer science subjects, programming fundamentals, full-stack application development, and data analysis.",
-    appliedFocus:
-      "Applying theoretical computer science coursework directly into functional software—building full-stack web applications, exploratory data pipelines, and telemetry systems."
+    learningApproach: {
+      title: "Learning by building",
+      intro:
+        "My academic journey combines computer science fundamentals with practical software development, project-based learning, and analytical problem-solving.",
+      items: [
+        {
+          id: "engineering-foundations",
+          title: "Engineering foundations",
+          description: "Understanding how software systems are designed and built."
+        },
+        {
+          id: "practical-projects",
+          title: "Practical projects",
+          description: "Applying classroom concepts to working applications."
+        },
+        {
+          id: "analytical-thinking",
+          title: "Analytical thinking",
+          description: "Breaking down problems and evaluating possible solutions."
+        },
+        {
+          id: "continuous-learning",
+          title: "Continuous learning",
+          description: "Exploring new concepts through experimentation and development."
+        }
+      ]
+    }
   }
 ];
 

@@ -1,6 +1,13 @@
 import React from 'react';
 import { educationData } from '../data/portfolioData';
-import { GraduationCap, MapPin, Calendar } from 'lucide-react';
+import { GraduationCap, MapPin, Calendar, Layers, Terminal, Lightbulb, Compass } from 'lucide-react';
+
+const ITEM_ICONS = {
+  'engineering-foundations': Layers,
+  'practical-projects': Terminal,
+  'analytical-thinking': Lightbulb,
+  'continuous-learning': Compass
+};
 
 export default function Education() {
   return (
@@ -53,10 +60,30 @@ export default function Education() {
                   {edu.notes}
                 </p>
 
-                {edu.appliedFocus && (
-                  <div className="education-approach">
-                    <span className="approach-label">LEARNING BY BUILDING</span>
-                    <p className="approach-text">{edu.appliedFocus}</p>
+                {/* Learning by Building Subsection */}
+                {edu.learningApproach && (
+                  <div className="education-approach-section">
+                    <div className="education-approach-header">
+                      <h4 className="education-approach-title">{edu.learningApproach.title}</h4>
+                      <p className="education-approach-intro">{edu.learningApproach.intro}</p>
+                    </div>
+
+                    <div className="education-items-grid">
+                      {edu.learningApproach.items.map((item) => {
+                        const IconComponent = ITEM_ICONS[item.id] || Layers;
+                        return (
+                          <div key={item.id} className="education-item-card">
+                            <div className="education-item-icon-box" aria-hidden="true">
+                              <IconComponent size={15} />
+                            </div>
+                            <div className="education-item-content">
+                              <h5 className="education-item-title">{item.title}</h5>
+                              <p className="education-item-desc">{item.description}</p>
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </div>
                   </div>
                 )}
               </div>
