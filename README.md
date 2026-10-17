@@ -17,7 +17,7 @@ Designed with an architectural, design-publication aesthetic combining warm off-
   - Accent Color: `#315DEB` (Restrained cobalt blue)
   - Architectural Borders: `#DCD9D0`
 - **Typography**: Google Fonts pairing of **Plus Jakarta Sans** (UI & body text) and **JetBrains Mono** (editorial tags, code labels, and metadata pills).
-- **Project Visuals**: Restrained, truthful SVG architectural schematics illustrating actual verified workflows (dual-domain inventory architecture for Rent Wise; Python/Pandas/NumPy/Matplotlib pipeline for Retail Data Analysis), clearly labeled as visual representations.
+- **Project Visuals**: Restrained, truthful SVG architectural schematics illustrating actual verified workflows (dual-domain inventory architecture for Rent Wise; Python/Pandas/NumPy/Matplotlib pipeline for Retail Data Analysis; D3.js stakeholder graph and Gemini API integration for Deal Intelligence Agent), clearly labeled as visual representations.
 
 ---
 
@@ -45,6 +45,7 @@ Portfolio/
 │   ├── components/
 │   │   ├── About.jsx          # Academic background and engineering principles
 │   │   ├── Contact.jsx        # Direct connection channels & config notice
+│   │   ├── DealIntelligenceVisual.jsx # Hack Baroda prototype SVG schematic
 │   │   ├── Education.jsx      # B.Tech CSE at GSFC University (5th Sem)
 │   │   ├── Footer.jsx         # Colophon, dynamic year & smooth back-to-top
 │   │   ├── Hero.jsx           # Editorial introduction & academic profile card
