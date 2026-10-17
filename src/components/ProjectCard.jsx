@@ -2,6 +2,7 @@ import { ExternalLink, ArrowRight } from 'lucide-react';
 import { GithubIcon } from './Icons';
 import RentWiseVisual from './RentWiseVisual';
 import RetailDataVisual from './RetailDataVisual';
+import DealIntelligenceVisual from './DealIntelligenceVisual';
 
 export default function ProjectCard({ project, onOpenDetails }) {
   // Render visual: either custom image or verified architectural schematic
@@ -25,6 +26,10 @@ export default function ProjectCard({ project, onOpenDetails }) {
 
     if (project.visualType === 'data-schematic') {
       return <RetailDataVisual />;
+    }
+
+    if (project.visualType === 'deal-intelligence-schematic') {
+      return <DealIntelligenceVisual />;
     }
 
     return null;

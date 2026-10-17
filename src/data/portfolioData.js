@@ -202,5 +202,60 @@ export const projectsData = [
       "Applying multi-index grouping and aggregate functions in Pandas for rapid exploratory insights.",
       "Designing clean, non-distracting data visual plots with well-labeled axes and legends using Matplotlib."
     ]
+  },
+  {
+    id: "deal-intelligence-agent",
+    number: "03",
+    title: "Deal Intelligence Agent",
+    tagline: "AI-Assisted Sales Intelligence Prototype · Hack Baroda",
+    shortDescription:
+      "An AI-assisted sales intelligence prototype developed for Hack Baroda. The project explores how organizational memory, stakeholder intelligence, objection analysis, and context-aware recommendations can help sales teams understand deals and make better-informed decisions.",
+    category: "Hackathon Project · Hack Baroda",
+    status: "Participated in Hack Baroda",
+    technologies: ["JavaScript", "HTML5", "CSS3", "D3.js", "Google Gemini API"],
+
+    // Live links: kept null to avoid dead buttons (no URLs provided)
+    githubUrl: null,
+    liveUrl: null,
+
+    visualType: "deal-intelligence-schematic",
+    visualLabel: "Stakeholder Graph & Intelligence Engine Schematic",
+
+    overview: {
+      problem:
+        "Sales teams navigating multi-stakeholder B2B deals often encounter fragmented institutional memory, lack visibility into complex relationship dynamics, and miss opportunities to systematically anticipate buyer objections.",
+      solution:
+        "Deal Intelligence Agent is an AI-assisted sales intelligence prototype developed for Hack Baroda. It explores how organizational memory, stakeholder relationship visualization, objection intelligence, and context-aware recommendations can help sales teams understand deals and make better-informed decisions.",
+      contribution:
+        "Worked across multiple parts of the project, contributing to different components of the application.",
+      statusDetails:
+        "Hackathon prototype developed for Hack Baroda. Features simulated deal datasets, interactive graph exploration, and a judge demonstration mode."
+    },
+
+    highlights: [
+      {
+        label: "Stakeholder Relationship Graph",
+        text: "Interactive visual network exploring deal decision-makers, internal champions, and relationship dynamics using D3.js."
+      },
+      {
+        label: "Objection & Context Intelligence",
+        text: "Explored structured indexing of recurring buyer objections and retrieval of context from similar historical deal scenarios."
+      },
+      {
+        label: "AI Strategy Recommendations",
+        text: "Prototype integration with the Google Gemini API to analyze deal state and propose context-aware tactical recommendations."
+      },
+      {
+        label: "Outcome Simulation & Demo Mode",
+        text: "Designed simulated decision paths and judge demo workflows to explore deal trajectory trade-offs and presentation scenarios."
+      }
+    ],
+
+    learnings: [
+      "Collaborating under hackathon time constraints at Hack Baroda to architect and build a working proof-of-concept.",
+      "Implementing interactive relationship graphs with D3.js to communicate complex multi-stakeholder dynamics clearly.",
+      "Structuring prompt flows and API payloads for business intelligence tasks using the Google Gemini API integration.",
+      "Balancing mock datasets and demo workflows to effectively present prototype AI capabilities."
+    ]
   }
 ];
