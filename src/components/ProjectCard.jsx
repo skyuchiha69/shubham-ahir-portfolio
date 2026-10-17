@@ -3,6 +3,7 @@ import { GithubIcon } from './Icons';
 import RentWiseVisual from './RentWiseVisual';
 import RetailDataVisual from './RetailDataVisual';
 import DealIntelligenceVisual from './DealIntelligenceVisual';
+import SoilSenseVisual from './SoilSenseVisual';
 
 export default function ProjectCard({ project, onOpenDetails }) {
   // Render visual: either custom image or verified architectural schematic
@@ -30,6 +31,10 @@ export default function ProjectCard({ project, onOpenDetails }) {
 
     if (project.visualType === 'deal-intelligence-schematic') {
       return <DealIntelligenceVisual />;
+    }
+
+    if (project.visualType === 'soilsense-schematic') {
+      return <SoilSenseVisual />;
     }
 
     return null;
@@ -96,7 +101,7 @@ export default function ProjectCard({ project, onOpenDetails }) {
               aria-label={`View ${project.title} source code on GitHub`}
             >
               <GithubIcon size={16} aria-hidden="true" />
-              <span>Source</span>
+              <span>View Source</span>
             </a>
           )}
 

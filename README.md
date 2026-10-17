@@ -17,7 +17,7 @@ Designed with an architectural, design-publication aesthetic combining warm off-
   - Accent Color: `#315DEB` (Restrained cobalt blue)
   - Architectural Borders: `#DCD9D0`
 - **Typography**: Google Fonts pairing of **Plus Jakarta Sans** (UI & body text) and **JetBrains Mono** (editorial tags, code labels, and metadata pills).
-- **Project Visuals**: Restrained, truthful SVG architectural schematics illustrating actual verified workflows (dual-domain inventory architecture for Rent Wise; Python/Pandas/NumPy/Matplotlib pipeline for Retail Data Analysis; D3.js stakeholder graph and Gemini API integration for Deal Intelligence Agent), clearly labeled as visual representations.
+- **Project Visuals**: Restrained, truthful SVG architectural schematics illustrating actual verified workflows (dual-domain inventory architecture for Rent Wise; Python/Pandas/NumPy/Matplotlib pipeline for Retail Data Analysis; D3.js stakeholder graph and Gemini API integration for Deal Intelligence Agent; telemetry polling and Express/Mongoose pipeline for SoilSense), clearly labeled as visual representations.
 
 ---
 
@@ -54,7 +54,8 @@ Portfolio/
 │   │   ├── ProjectCard.jsx    # Project card with conditional links
 │   │   ├── ProjectDetailsModal.jsx # Native <dialog> case study inspector
 │   │   ├── RentWiseVisual.jsx # Rent Wise dual-domain SVG schematic
-│   │   └── RetailDataVisual.jsx # Retail analysis pipeline SVG schematic
+│   │   ├── RetailDataVisual.jsx # Retail analysis pipeline SVG schematic
+│   │   └── SoilSenseVisual.jsx # SoilSense telemetry architecture SVG schematic
 │   ├── data/
 │   │   └── portfolioData.js   # Single source of truth for all portfolio content
 │   ├── styles/
@@ -188,5 +189,6 @@ Your website will be live in under a minute with a free `.vercel.app` URL and au
 
 ## 🔒 Verification & Integrity Notice
 
-- **No Invented Claims**: All claims, technologies, and academic milestones reflect only verified facts (B.Tech CSE, 5th Semester at GSFC University; Rent Wise; Retail Data Analysis).
+- **No Invented Claims**: All claims, technologies, and academic milestones reflect only verified facts (B.Tech CSE, 5th Semester at GSFC University; Rent Wise; Retail Data Analysis; Deal Intelligence Agent at Hack Baroda; SoilSense Soil Monitoring System).
 - **Independent**: This repository is completely decoupled from any project backend or credentials.
+

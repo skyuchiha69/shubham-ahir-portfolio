@@ -85,7 +85,8 @@ export const skillsData = [
     skills: [
       { name: "Node.js", context: "Server-side JavaScript runtime environment for backend applications." },
       { name: "Express", context: "RESTful API endpoint creation, routing logic, and request middleware." },
-      { name: "MongoDB", context: "NoSQL document modeling, collection querying, and CRUD operations." }
+      { name: "MongoDB", context: "NoSQL document modeling, collection querying, and CRUD operations." },
+      { name: "Mongoose", context: "Schema modeling, document validation, and database queries for MongoDB." }
     ]
   }
 ];
@@ -255,5 +256,69 @@ export const projectsData = [
       "Structuring prompt flows and API payloads for business intelligence tasks using the Google Gemini API integration.",
       "Balancing mock datasets and demo workflows to effectively present prototype AI capabilities."
     ]
+  },
+  {
+    id: "soilsense-monitoring",
+    number: "04",
+    title: "SoilSense — Soil Monitoring System",
+    tagline: "Web Application & Real-Time Monitoring Dashboard",
+    shortDescription:
+      "SoilSense is a soil monitoring web application featuring a dashboard for displaying temperature, humidity, soil moisture, and pH readings. It retrieves stored sensor readings from a backend API and presents recent measurements in a dashboard with a history table.",
+    category: "Web Application / Monitoring Dashboard",
+    status: "Functional Web Prototype",
+    technologies: ["HTML", "CSS", "JavaScript", "Node.js", "Express.js", "MongoDB", "Mongoose"],
+
+    // Verified GitHub repository URL
+    githubUrl: "https://github.com/skyuchiha69/soildata",
+    liveUrl: null, // Kept null to avoid dead buttons (no production deployment URL)
+
+    visualType: "soilsense-schematic",
+    visualLabel: "System Architecture & Sensor Data Polling Schematic",
+
+    overview: {
+      problem:
+        "Monitoring agricultural soil and environmental health requires consolidating continuous metric streams—such as temperature, humidity, soil moisture, and pH levels—into an accessible interface with chronological records.",
+      solution:
+        "SoilSense is a soil monitoring web application featuring a dashboard for displaying temperature, humidity, soil moisture, and pH readings. It retrieves stored sensor readings from a backend API and presents recent measurements in a dashboard with a history table.",
+      contribution:
+        "Worked on this project across the full-stack web application, contributing to frontend dashboard styling and DOM updates, backend Express API endpoints, and MongoDB database persistence.",
+      statusDetails:
+        "Functional web application prototype comprising a responsive frontend dashboard, Express.js backend endpoints, and MongoDB persistence. Operates via 5-second automatic HTTP polling to query and render recent stored measurements."
+    },
+
+    highlights: [
+      {
+        label: "Telemetry Monitoring Dashboard",
+        text: "Interactive web dashboard featuring dedicated readout cards for temperature (°C), ambient humidity (%), soil moisture (%), and pH levels."
+      },
+      {
+        label: "Recent History Data Table",
+        text: "Tabular display presenting recent stored measurements with formatted local timestamps and sensor metrics dynamically populated via DOM operations."
+      },
+      {
+        label: "RESTful Data Retrieval Endpoint",
+        text: "Express backend endpoint (GET /api/data) that queries MongoDB via Mongoose, returning the latest 10 chronological readings sorted by timestamp."
+      },
+      {
+        label: "Ingestion API Endpoint",
+        text: "Backend route (POST /data) that receives structured JSON payloads and persists new measurement records into the database."
+      },
+      {
+        label: "MongoDB Document Persistence",
+        text: "Mongoose schema defining numerical fields for temperature, humidity, soil moisture, pH, and an automatically defaulted timestamp."
+      },
+      {
+        label: "Automated Dashboard Polling",
+        text: "Client-side interval timer (setInterval) that periodically fetches updated measurements from the backend API every five seconds without page refreshes."
+      }
+    ],
+
+    learnings: [
+      "Building clean, responsive telemetry dashboard layouts with semantic HTML, CSS, and vanilla JavaScript.",
+      "Implementing structured REST API endpoints in Express.js for retrieving and persisting time-stamped records.",
+      "Integrating MongoDB with Mongoose to define document schemas and query historical collections.",
+      "Managing browser-side asynchronous HTTP polling cycles and updating DOM components dynamically."
+    ]
   }
 ];
+
