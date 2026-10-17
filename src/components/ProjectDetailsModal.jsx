@@ -163,6 +163,7 @@ export default function ProjectDetailsModal({ project, isOpen, onClose }) {
               target="_blank"
               rel="noopener noreferrer"
               className="btn btn-secondary"
+              aria-label={`View ${project.title} repository on GitHub`}
             >
               <GithubIcon size={16} aria-hidden="true" />
               <span>View Repository</span>

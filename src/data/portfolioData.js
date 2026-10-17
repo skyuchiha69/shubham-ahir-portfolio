@@ -97,7 +97,9 @@ export const educationData = [
     institution: "GSFC University",
     status: "Current (5th Semester)",
     type: "Undergraduate Degree",
-    notes: "Focusing on core computer science subjects, programming fundamentals, full-stack application development, and data analysis."
+    notes: "Focusing on core computer science subjects, programming fundamentals, full-stack application development, and data analysis.",
+    appliedFocus:
+      "Applying theoretical computer science coursework directly into functional software—building full-stack web applications, exploratory data pipelines, and telemetry systems."
   }
 ];
 
@@ -113,8 +115,8 @@ export const projectsData = [
     status: "Academic Project · In Active Development",
     technologies: ["React", "Node.js", "Express", "MongoDB", "JavaScript"],
     
-    // Live links: set to string when deployed; kept null to avoid dead buttons
-    githubUrl: null,
+    // Confirmed GitHub repository URL
+    githubUrl: "https://github.com/solankimanav99/perfectRentAndRemin/tree/main",
     liveUrl: null,
     
     visualType: "rental-schematic",
@@ -213,8 +215,8 @@ export const projectsData = [
     status: "Participated in Hack Baroda",
     technologies: ["JavaScript", "HTML5", "CSS3", "D3.js", "Google Gemini API"],
 
-    // Live links: kept null to avoid dead buttons (no URLs provided)
-    githubUrl: null,
+    // Confirmed GitHub repository URL
+    githubUrl: "https://github.com/skyuchiha69/Deal-Intelligence-Agent",
     liveUrl: null,
 
     visualType: "deal-intelligence-schematic",

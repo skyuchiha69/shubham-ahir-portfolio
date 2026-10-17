@@ -53,15 +53,12 @@ export default function Education() {
                   {edu.notes}
                 </p>
 
-                <div className="education-topics">
-                  <span className="topics-label">ACTIVE CURRICULUM AREAS:</span>
-                  <div className="topics-tags">
-                    <span className="topic-pill">Software Engineering</span>
-                    <span className="topic-pill">Data Structures &amp; Algorithms</span>
-                    <span className="topic-pill">Database Systems</span>
-                    <span className="topic-pill">Data Science &amp; Analysis</span>
+                {edu.appliedFocus && (
+                  <div className="education-approach">
+                    <span className="approach-label">LEARNING BY BUILDING</span>
+                    <p className="approach-text">{edu.appliedFocus}</p>
                   </div>
-                </div>
+                )}
               </div>
 
             </div>
