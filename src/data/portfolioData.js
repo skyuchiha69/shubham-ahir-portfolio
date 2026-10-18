@@ -349,3 +349,20 @@ export const projectsData = [
   }
 ];
 
+export const experienceData = [
+  {
+    id: "logistic-infotech",
+    role: "Web Development Intern",
+    company: "Logistic Infotech Pvt. Ltd.",
+    location: "Rajkot, Gujarat, India",
+    displayLocation: "Rajkot, Gujarat",
+    duration: "May 20, 2024 – June 20, 2024",
+    status: "Completed",
+    type: "Internship",
+    technologies: ["React.js"],
+    projectGuide: "Mr. Chintan Adatiya",
+    description: "Completed a one-month project internship focused on web development using React.js.",
+    highlight: "Hands-on exposure to React.js and practical web development."
+  }
+];
+

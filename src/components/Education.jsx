@@ -16,7 +16,7 @@ export default function Education() {
         
         {/* Section Header */}
         <div className="section-header">
-          <span className="section-number">[ 04 / FORMAL EDUCATION ]</span>
+          <span className="section-number">[ 05 / FORMAL EDUCATION ]</span>
           <h2 id="education-heading" className="section-title">
             Education
           </h2>

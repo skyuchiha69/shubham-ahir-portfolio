@@ -22,7 +22,7 @@ export default function Skills() {
         
         {/* Section Header */}
         <div className="section-header">
-          <span className="section-number">[ 03 / TECHNICAL CAPABILITIES ]</span>
+          <span className="section-number">[ 04 / TECHNICAL CAPABILITIES ]</span>
           <h2 id="skills-section-heading" className="section-title">
             Skills &amp; Technologies
           </h2>

@@ -9,7 +9,7 @@ export default function About() {
         
         {/* Section Header */}
         <div className="section-header">
-          <span className="section-number">[ 02 / BACKGROUND &amp; ORIENTATION ]</span>
+          <span className="section-number">[ 03 / BACKGROUND &amp; ORIENTATION ]</span>
           <h2 id="about-section-heading" className="section-title">
             About Me
           </h2>

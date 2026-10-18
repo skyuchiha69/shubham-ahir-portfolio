@@ -13,7 +13,7 @@ export default function Contact() {
         
         {/* Section Header */}
         <div className="section-header">
-          <span className="section-number">[ 05 / PROFESSIONAL DIALOGUE ]</span>
+          <span className="section-number">[ 06 / PROFESSIONAL DIALOGUE ]</span>
           <h2 id="contact-heading" className="section-title">
             Contact &amp; Connect
           </h2>
