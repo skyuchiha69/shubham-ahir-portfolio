@@ -4,6 +4,7 @@ import RentWiseVisual from './RentWiseVisual';
 import RetailDataVisual from './RetailDataVisual';
 import DealIntelligenceVisual from './DealIntelligenceVisual';
 import SoilSenseVisual from './SoilSenseVisual';
+import CampusCopilotVisual from './CampusCopilotVisual';
 
 export default function ProjectCard({ project, onOpenDetails }) {
   // Render visual: either custom image or verified architectural schematic
@@ -35,6 +36,10 @@ export default function ProjectCard({ project, onOpenDetails }) {
 
     if (project.visualType === 'soilsense-schematic') {
       return <SoilSenseVisual />;
+    }
+
+    if (project.visualType === 'campus-copilot-schematic') {
+      return <CampusCopilotVisual />;
     }
 
     return null;

@@ -346,6 +346,78 @@ export const projectsData = [
       "Integrating MongoDB with Mongoose to define document schemas and query historical collections.",
       "Managing browser-side asynchronous HTTP polling cycles and updating DOM components dynamically."
     ]
+  },
+  {
+    id: "campus-copilot",
+    number: "05",
+    title: "Campus Copilot",
+    tagline: "AI-Powered University Assistant · GSFC University IEEE Hackathon",
+    shortDescription:
+      "An AI-powered university assistant designed to bring campus information and academic support into one platform. It combines retrieval-augmented generation (RAG), university knowledge retrieval, and student-focused services to help users access academic information and campus resources.",
+    category: "Hackathon Project · AI Assistant",
+    status: "Hackathon Prototype · GSFC University IEEE Hackathon",
+    technologies: [
+      "React",
+      "TypeScript",
+      "Vite",
+      "Tailwind CSS",
+      "Node.js",
+      "Express.js",
+      "MongoDB",
+      "Retrieval-Augmented Generation (RAG)"
+    ],
+
+    // Confirmed GitHub repository URL
+    githubUrl: "https://github.com/skyuchiha69/Campus-copilot-ieee",
+    liveUrl: null,
+
+    visualType: "campus-copilot-schematic",
+    visualLabel: "RAG Architecture & Academic Service Pipeline Schematic",
+
+    overview: {
+      problem:
+        "University information is often fragmented across multiple portals, departmental notice boards, and course circulars, making it time-consuming for students to locate authoritative academic guidelines, schedules, and personalized coursework data.",
+      solution:
+        "Campus Copilot was developed as a hackathon prototype during the GSFC University IEEE Hackathon. It brings campus knowledge and student-focused services into one unified platform, combining retrieval-augmented generation (RAG) with source citations, document ingestion, and authenticated student services.",
+      contribution:
+        "Contributed to full-stack implementation across the React frontend and Express/Node.js backend, developing student academic information views, role-based route guards, document ingestion endpoints, and grounded RAG query flows.",
+      statusDetails:
+        "Hackathon prototype developed during the GSFC University IEEE Hackathon. Features modular API services, document chunking, and simulated academic records. Implementation note: Live ERP synchronization, Atlas vector-search indexing, and third-party LLM synthesis require respective campus credentials and API environment keys."
+    },
+
+    highlights: [
+      {
+        label: "Grounded RAG Academic Chat",
+        text: "Interactive assistant featuring 3-tier grounding status (strongly grounded, partially grounded, not verified), source citations, and prompt-injection defense mechanisms."
+      },
+      {
+        label: "Student Academic Information",
+        text: "Dedicated endpoints and views for authenticated attendance monitoring, personalized weekly timetables, semester results, exam seating venues, and assignment tracking."
+      },
+      {
+        label: "Document Ingestion & Chunking",
+        text: "Multipart document upload pipeline (PDF, TXT, DOCX) with automated text extraction, chunking, and isolated vector storage for syllabi and handbooks."
+      },
+      {
+        label: "Security & Role-Based Access Control",
+        text: "JWT-based authentication with cryptographic token verification and RBAC route protection across student, instructor, staff, and administrative roles."
+      },
+      {
+        label: "Campus Services & Information",
+        text: "Structured information access for departmental notices, upcoming campus hackathons and workshops, building facility locators, and course catalogs."
+      },
+      {
+        label: "Administrative Knowledge-Gap Tracking",
+        text: "Administrative workflow for monitoring unanswered or unverified student questions and logging resolutions backed by official university source references."
+      }
+    ],
+
+    learnings: [
+      "Building a multi-tier RAG application architecture under hackathon time constraints for the GSFC University IEEE Hackathon.",
+      "Implementing strict multi-tenant data isolation ensuring student queries strictly resolve against verified cryptographic JWT context (req.user.id).",
+      "Designing grounding verification checks and citation mechanics to improve transparency and prevent hallucinations in academic information retrieval.",
+      "Structuring modular Express REST controllers and TypeScript interfaces across frontend components and backend services."
+    ]
   }
 ];
 
