@@ -81,8 +81,6 @@ body {
   min-height: 100vh;
   position: relative;
   overflow-x: hidden;
-  selection-background-color: var(--color-accent-subtle);
-  selection-color: var(--color-accent);
 }
 
 ::selection {
