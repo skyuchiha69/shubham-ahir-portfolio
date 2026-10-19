@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, ArrowUpRight } from 'lucide-react';
+import { Menu, X, ArrowUpRight, Sparkles } from 'lucide-react';
 import { personalData } from '../data/portfolioData';
 
-export default function Navbar() {
+export default function Navbar({ onOpenExplorer }) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -37,10 +37,9 @@ export default function Navbar() {
 
   const navLinks = [
     { label: 'Work', href: '#work' },
+    { label: 'Skills', href: '#skills' },
     { label: 'Experience', href: '#experience' },
     { label: 'About', href: '#about' },
-    { label: 'Skills', href: '#skills' },
-    { label: 'Education', href: '#education' },
     { label: 'Contact', href: '#contact' },
   ];
 
@@ -62,7 +61,8 @@ export default function Navbar() {
   return (
     <header className={`navbar-header ${isScrolled ? 'is-scrolled' : ''}`}>
       <div className="container nav-container">
-        {/* Brand / Monogram */}
+        
+        {/* Brand / Wordmark */}
         <a 
           href="#top" 
           className="nav-brand"
@@ -90,18 +90,33 @@ export default function Navbar() {
                 </a>
               </li>
             ))}
+            
+            {/* Interactive Explore Lab Button in Navbar */}
+            <li>
+              <button
+                type="button"
+                className="nav-link-btn"
+                onClick={onOpenExplorer}
+                aria-label="Open project archive"
+              >
+                <Sparkles size={13} aria-hidden="true" />
+                <span>Explore Lab</span>
+              </button>
+            </li>
           </ul>
         </nav>
 
         {/* Right CTA / Status */}
         <div className="nav-right">
           <a
-            href="#contact"
+            href="https://mail.google.com/mail/?view=cm&fs=1&to=shubhamahir2525@gmail.com"
+            target="_blank"
+            rel="noopener noreferrer"
             className="nav-cta-btn"
-            onClick={(e) => handleLinkClick(e, '#contact')}
+            aria-label="Compose email to shubhamahir2525@gmail.com on Gmail"
           >
-            <span>Get in Touch</span>
-            <ArrowUpRight size={15} aria-hidden="true" />
+            <span>Email</span>
+            <ArrowUpRight size={14} aria-hidden="true" />
           </a>
 
           {/* Mobile Menu Toggle Button */}
@@ -113,7 +128,7 @@ export default function Navbar() {
             aria-controls="mobile-nav-menu"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           >
-            {mobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
+            {mobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
           </button>
         </div>
       </div>
@@ -126,8 +141,18 @@ export default function Navbar() {
       >
         <div className="mobile-menu-drawer">
           <div className="mobile-menu-header">
-            <span className="brand-name">{personalData.name}</span>
-            <span className="mobile-semester-pill">5th Semester CSE</span>
+            <div>
+              <span className="brand-name">{personalData.name}</span>
+              <span className="mobile-semester-pill">5th Sem CSE</span>
+            </div>
+            <button
+              type="button"
+              className="mobile-close-btn"
+              onClick={() => setMobileMenuOpen(false)}
+              aria-label="Close mobile menu"
+            >
+              <X size={20} />
+            </button>
           </div>
 
           <nav className="mobile-nav" aria-label="Mobile Navigation">
@@ -144,6 +169,20 @@ export default function Navbar() {
                   </a>
                 </li>
               ))}
+              <li>
+                <button
+                  type="button"
+                  className="mobile-nav-link-btn"
+                  onClick={() => {
+                    setMobileMenuOpen(false);
+                    onOpenExplorer();
+                  }}
+                  tabIndex={mobileMenuOpen ? 0 : -1}
+                >
+                  <Sparkles size={15} aria-hidden="true" />
+                  <span>Explore All Projects (6)</span>
+                </button>
+              </li>
             </ul>
           </nav>
 

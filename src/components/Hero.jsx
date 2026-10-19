@@ -1,7 +1,11 @@
-import { ArrowDown, FileText, ArrowRight, BookOpen, Database, Code } from 'lucide-react';
+import React, { useState } from 'react';
+import { ArrowDown, ArrowUpRight, Mail, Sparkles, User, FileText } from 'lucide-react';
+import { GithubIcon } from './Icons';
 import { personalData } from '../data/portfolioData';
 
-export default function Hero() {
+export default function Hero({ onOpenExplorer }) {
+  const [imageError, setImageError] = useState(false);
+
   const scrollTo = (selector) => {
     const el = document.querySelector(selector);
     if (el) {
@@ -16,48 +20,96 @@ export default function Hero() {
     <section className="hero-section" id="top" aria-label="Introduction">
       <div className="container hero-container">
         
-        {/* Editorial Eyebrow */}
+        {/* Availability / Status Eyebrow */}
         <div className="hero-meta-strip">
+          <div className="hero-status-pill">
+            <span className="status-live-dot" aria-hidden="true"></span>
+            <span className="status-live-text">{personalData.status}</span>
+          </div>
+          <span className="hero-meta-divider" aria-hidden="true">/</span>
           <span className="editorial-kicker">
             {personalData.eyebrow}
           </span>
-          <span className="hero-meta-divider" aria-hidden="true">/</span>
-          <span className="hero-status-pill">
-            {personalData.status}
-          </span>
         </div>
 
-        {/* Main Heading & Editorial Copy */}
-        <div className="hero-content-grid">
-          <div className="hero-main">
-            <h1 className="hero-title">
-              {personalData.heading}
+        {/* Two-Column Editorial Hero */}
+        <div className="hero-editorial-grid">
+          
+          {/* Left Column: Personal Identity & Actions */}
+          <div className="hero-intro-column">
+            <h1 className="hero-name-heading">
+              {personalData.name}
             </h1>
-            <p className="hero-description">
-              {personalData.headline}
+            
+            <p className="hero-lead-intro">
+              {personalData.introduction}
             </p>
 
-            {/* Action Buttons */}
-            <div className="hero-actions">
+            <p className="hero-supporting-line">
+              {personalData.supporting}
+            </p>
+
+            {/* Editorial Quick Specs Strip */}
+            <div className="hero-specs-row" aria-label="Quick Highlights">
+              <div className="hero-spec-item">
+                <span className="spec-label">DEGREE</span>
+                <span className="spec-value">{personalData.degree}</span>
+              </div>
+              <div className="hero-spec-item">
+                <span className="spec-label">INSTITUTION</span>
+                <span className="spec-value">{personalData.university}</span>
+              </div>
+              <div className="hero-spec-item">
+                <span className="spec-label">LOCATION</span>
+                <span className="spec-value">{personalData.location}</span>
+              </div>
+            </div>
+
+            {/* Action Buttons Row — Distinct Purpose CTAs */}
+            <div className="hero-actions-group">
               <button
                 type="button"
                 className="btn btn-primary"
                 onClick={() => scrollTo('#work')}
+                aria-label="Explore projects (scrolls to Projects section)"
               >
-                <span>Explore Projects</span>
-                <ArrowDown size={16} aria-hidden="true" />
+                <span>Explore projects</span>
+                <ArrowDown size={15} aria-hidden="true" className="btn-icon-move" />
               </button>
+
+              <a
+                href={`mailto:${personalData.contact.email}`}
+                className="btn btn-secondary"
+                aria-label={`Get in touch: send email to ${personalData.contact.email}`}
+              >
+                <Mail size={15} aria-hidden="true" />
+                <span>Get in touch</span>
+              </a>
 
               <button
                 type="button"
                 className="btn btn-secondary"
-                onClick={() => scrollTo('#contact')}
+                onClick={onOpenExplorer}
+                aria-label="Open project archive with all 6 projects"
               >
-                <span>Contact Me</span>
-                <ArrowRight size={16} aria-hidden="true" />
+                <Sparkles size={15} aria-hidden="true" />
+                <span>Project Archive</span>
               </button>
 
-              {/* Verified Résumé Link — Only shown if file URL is configured */}
+              <a
+                href={personalData.contact.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn-secondary btn-icon-only"
+                aria-label="GitHub profile: skyuchiha69 (opens in new tab)"
+                title="GitHub: skyuchiha69"
+              >
+                <GithubIcon size={16} aria-hidden="true" />
+                <span>GitHub</span>
+                <ArrowUpRight size={13} aria-hidden="true" />
+              </a>
+
+              {/* Resume download only if verified file exists */}
               {personalData.contact.resumeUrl && (
                 <a
                   href={personalData.contact.resumeUrl}
@@ -65,48 +117,71 @@ export default function Hero() {
                   rel="noopener noreferrer"
                   className="btn btn-secondary"
                 >
-                  <FileText size={16} aria-hidden="true" />
-                  <span>Download Résumé</span>
+                  <FileText size={15} aria-hidden="true" />
+                  <span>Download Resume</span>
                 </a>
               )}
             </div>
           </div>
 
-          {/* Academic & Project Focus Panel */}
-          <aside className="hero-editorial-card" aria-label="Academic & Practical Focus">
-            <div className="card-header-bar">
-              <span className="card-label-mono">ACADEMIC PROFILE</span>
-              <span className="card-badge">SEMESTER 05</span>
-            </div>
+          {/* Right Column: Portrait Frame */}
+          <div className="hero-portrait-column">
+            <div className="portrait-editorial-frame">
+              
+              {/* Outer Thin Border Registration Marks */}
+              <div className="portrait-frame-corners" aria-hidden="true">
+                <span className="corner-mark top-left">+</span>
+                <span className="corner-mark top-right">+</span>
+                <span className="corner-mark bottom-left">+</span>
+                <span className="corner-mark bottom-right">+</span>
+              </div>
 
-            <div className="card-body">
-              <div className="card-item">
-                <span className="item-label">INSTITUTION</span>
-                <span className="item-value">{personalData.university}</span>
+              {/* Portrait Image Box */}
+              <div className="portrait-image-wrapper">
+                {!imageError ? (
+                  <img
+                    src="/portrait.jpg"
+                    alt="Shubham Ahir - B.Tech Computer Science student"
+                    className="portrait-real-img"
+                    onError={() => setImageError(true)}
+                    loading="eager"
+                  />
+                ) : (
+                  /* Editorial Monogram Fallback Frame */
+                  <div className="portrait-fallback-box" aria-label="Developer portrait placeholder">
+                    <div className="fallback-monogram-circle">
+                      <span className="fallback-initials">SA</span>
+                    </div>
+                    <div className="fallback-details">
+                      <span className="fallback-name">{personalData.name}</span>
+                      <span className="fallback-degree">B.Tech CSE · GSFC University</span>
+                    </div>
+                    <div className="fallback-badge-pill">
+                      <User size={13} aria-hidden="true" />
+                      <span>Developer Portrait</span>
+                    </div>
+                    <p className="fallback-hint">
+                      Place your photo at <code>/public/portrait.jpg</code> to display here
+                    </p>
+                  </div>
+                )}
               </div>
-              <div className="card-item">
-                <span className="item-label">PROGRAM</span>
-                <span className="item-value">{personalData.degree}</span>
-              </div>
-              <div className="card-item">
-                <span className="item-label">CORE FOCUS</span>
-                <span className="item-value">Software Development &amp; Practical Engineering</span>
-              </div>
-            </div>
 
-            <div className="card-footer-focus">
-              <span className="focus-title">PRIMARY TECHNOLOGIES IN PRACTICE</span>
-              <div className="focus-tags">
-                <span className="focus-tag"><Code size={13} aria-hidden="true" /> React</span>
-                <span className="focus-tag"><Code size={13} aria-hidden="true" /> Node.js</span>
-                <span className="focus-tag"><Database size={13} aria-hidden="true" /> MongoDB</span>
-                <span className="focus-tag"><BookOpen size={13} aria-hidden="true" /> Python</span>
-                <span className="focus-tag">Pandas</span>
-                <span className="focus-tag">NumPy</span>
-                <span className="focus-tag">Matplotlib</span>
+              {/* Frame Footer Caption */}
+              <div className="portrait-caption-bar">
+                <div className="caption-text-group">
+                  <span className="caption-title">{personalData.name}</span>
+                  <span className="caption-sub">Vadodara / Rajkot, Gujarat</span>
+                </div>
+                <div className="caption-status-badge">
+                  <span className="dot-mini" aria-hidden="true"></span>
+                  <span>Active</span>
+                </div>
               </div>
+
             </div>
-          </aside>
+          </div>
+
         </div>
 
       </div>

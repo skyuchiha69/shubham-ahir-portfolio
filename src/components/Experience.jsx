@@ -1,109 +1,200 @@
-import React from 'react';
-import { experienceData } from '../data/portfolioData';
-import { Briefcase, Calendar, MapPin, CheckCircle2, UserCheck, Sparkles } from 'lucide-react';
+import React, { useState } from 'react';
+import { Briefcase, MapPin, GraduationCap, UserCheck } from 'lucide-react';
+import { experienceData, hackathonsData, educationData } from '../data/portfolioData';
 
 export default function Experience() {
+  const [activeTab, setActiveTab] = useState('experience-hackathons'); // 'experience-hackathons' | 'education'
+
   return (
     <section className="experience-section" id="experience" aria-labelledby="experience-heading">
       <div className="container">
         
         {/* Section Header */}
-        <div className="section-header">
-          <span className="section-number">[ 02 / PROFESSIONAL EXPERIENCE ]</span>
-          <h2 id="experience-heading" className="section-title">
-            Experience
-          </h2>
-          <p className="section-subtitle">
-            Practical software development internship and industry exposure.
-          </p>
+        <div className="section-header-row">
+          <div className="section-header-left">
+            <span className="section-number">[ 03 / TRAJECTORY &amp; FORMATION ]</span>
+            <h2 id="experience-heading" className="section-title">
+              Experience &amp; Education
+            </h2>
+            <p className="section-subtitle">
+              Professional internship, competitive hackathons, and undergraduate engineering studies.
+            </p>
+          </div>
+
+          {/* Tab Switcher */}
+          <div className="experience-tabs" role="tablist" aria-label="Trajectory sections">
+            <button
+              type="button"
+              role="tab"
+              aria-selected={activeTab === 'experience-hackathons'}
+              className={`exp-tab-btn ${activeTab === 'experience-hackathons' ? 'is-active' : ''}`}
+              onClick={() => setActiveTab('experience-hackathons')}
+            >
+              <Briefcase size={14} aria-hidden="true" />
+              <span>Experience &amp; Hackathons</span>
+            </button>
+
+            <button
+              type="button"
+              role="tab"
+              aria-selected={activeTab === 'education'}
+              className={`exp-tab-btn ${activeTab === 'education' ? 'is-active' : ''}`}
+              onClick={() => setActiveTab('education')}
+            >
+              <GraduationCap size={15} aria-hidden="true" />
+              <span>Formal Education</span>
+            </button>
+          </div>
         </div>
 
-        {/* Experience Cards Wrapper */}
-        <div className="experience-cards-wrapper">
-          {experienceData.map((exp) => (
-            <article key={exp.id} className="experience-card" aria-labelledby={`experience-title-${exp.id}`}>
-              
-              {/* Left Meta Column */}
-              <div className="experience-meta-column">
-                <div className="experience-logo-box" aria-hidden="true">
-                  <span className="experience-monogram">LI</span>
-                </div>
-                <div className="experience-status-tag completed">
-                  <CheckCircle2 size={13} aria-hidden="true" />
-                  <span>{exp.status}</span>
-                </div>
-                <div className="experience-type-tag">
-                  <Briefcase size={12} aria-hidden="true" />
-                  <span>{exp.type}</span>
-                </div>
+        {/* Tab Panel 1: Experience & Hackathons */}
+        {activeTab === 'experience-hackathons' && (
+          <div className="trajectory-panel" role="tabpanel">
+            
+            {/* Internship Block */}
+            <div className="trajectory-block">
+              <div className="block-eyebrow-strip">
+                <span className="block-label">PROFESSIONAL INTERNSHIP</span>
+                <span className="block-status-tag">Verified Industry Exposure</span>
               </div>
 
-              {/* Right Details Column */}
-              <div className="experience-details-column">
-                <div className="experience-header-row">
-                  <div className="role-company-group">
-                    <h3 id={`experience-title-${exp.id}`} className="experience-role-title">
-                      {exp.role}
-                    </h3>
-                    <div className="company-info-row">
-                      <span className="company-name">{exp.company}</span>
-                      <span className="meta-separator" aria-hidden="true">·</span>
-                      <span className="company-location">
+              {experienceData.map((exp) => (
+                <article key={exp.id} className="timeline-editorial-row internship-feature-card">
+                  <div className="timeline-meta-col">
+                    <span className="timeline-date">{exp.dates || exp.duration}</span>
+                    <span className="timeline-duration-badge">{exp.durationLabel || "One month"}</span>
+                    <span className="timeline-location">
+                      <MapPin size={12} aria-hidden="true" />
+                      <span>{exp.location}</span>
+                    </span>
+                    <span className="timeline-type-pill">{exp.type}</span>
+                  </div>
+
+                  <div className="timeline-body-col">
+                    <div className="timeline-role-title-row">
+                      <div>
+                        <h3 className="timeline-role-title">{exp.role}</h3>
+                        <span className="timeline-company-name">@ {exp.company}</span>
+                      </div>
+
+                      {exp.projectGuide && (
+                        <div className="timeline-guide-badge" title="Project Mentorship">
+                          <UserCheck size={13} aria-hidden="true" />
+                          <span>Mentored by {exp.projectGuide}</span>
+                        </div>
+                      )}
+                    </div>
+
+                    {/* Narrative Description */}
+                    <p className="timeline-narrative">
+                      {exp.narrative || exp.description}
+                    </p>
+
+                    {/* Conservative Verified Takeaways */}
+                    {exp.supportingPoints && exp.supportingPoints.length > 0 && (
+                      <div className="timeline-takeaways-block">
+                        <span className="takeaways-label">Core Exposure &amp; Practiced Workflows:</span>
+                        <ul className="takeaways-list">
+                          {exp.supportingPoints.map((point, idx) => (
+                            <li key={idx} className="takeaway-item">
+                              <span className="takeaway-bullet" aria-hidden="true">▪</span>
+                              <span>{point}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+
+                    <div className="timeline-footer-row">
+                      <div className="timeline-tech-tags">
+                        <span className="tech-label">CORE TECHNOLOGIES:</span>
+                        {exp.technologies.map((t) => (
+                          <span key={t} className="tech-badge-sm">{t}</span>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </article>
+              ))}
+            </div>
+
+            {/* Hackathons Sub-Block */}
+            <div className="trajectory-block">
+              <div className="block-eyebrow-strip">
+                <span className="block-label">COMPETITIVE HACKATHONS &amp; PROTOTYPES</span>
+                <span className="block-status-tag">3 Events</span>
+              </div>
+
+              <div className="hackathons-editorial-grid">
+                {hackathonsData.map((hack) => (
+                  <article key={hack.id} className="hackathon-card">
+                    <div className="hackathon-card-header">
+                      <div className="hackathon-title-group">
+                        <h4 className="hackathon-name">{hack.title}</h4>
+                        <span className="hackathon-role">{hack.role}</span>
+                      </div>
+                      <span className="hackathon-badge">{hack.achievement}</span>
+                    </div>
+
+                    <p className="hackathon-description">{hack.description}</p>
+
+                    <div className="hackathon-tags">
+                      {hack.technologies.map((tech) => (
+                        <span key={tech} className="hack-tech-pill">{tech}</span>
+                      ))}
+                    </div>
+                  </article>
+                ))}
+              </div>
+            </div>
+
+          </div>
+        )}
+
+        {/* Tab Panel 2: Formal Education */}
+        {activeTab === 'education' && (
+          <div className="trajectory-panel" role="tabpanel">
+            {educationData.map((edu, idx) => (
+              <div key={idx} className="education-editorial-card">
+                
+                <div className="edu-header-row">
+                  <div className="edu-title-col">
+                    <div className="edu-badge-row">
+                      <span className="edu-status-tag">{edu.status}</span>
+                      <span className="edu-type-tag">{edu.type}</span>
+                    </div>
+                    <h3 className="edu-degree-heading">{edu.degree}</h3>
+                    <div className="edu-institution-row">
+                      <span className="edu-institution-name">{edu.institution}</span>
+                      <span className="meta-bullet" aria-hidden="true">·</span>
+                      <span className="edu-location">
                         <MapPin size={13} aria-hidden="true" />
-                        <span>{exp.displayLocation || exp.location}</span>
+                        <span>{edu.location}</span>
                       </span>
                     </div>
                   </div>
 
-                  <div className="experience-duration-pill">
-                    <Calendar size={13} aria-hidden="true" />
-                    <span>{exp.duration}</span>
+                  <div className="edu-monogram-box" aria-hidden="true">
+                    <GraduationCap size={28} />
                   </div>
                 </div>
 
-                {/* Description */}
-                <p className="experience-description">
-                  {exp.description}
-                </p>
+                <p className="edu-notes-copy">{edu.notes}</p>
 
-                {/* Compact Highlight */}
-                {exp.highlight && (
-                  <div className="experience-highlight-card">
-                    <div className="highlight-icon-box" aria-hidden="true">
-                      <Sparkles size={14} />
+                {/* Academic Pillars */}
+                <div className="edu-pillars-grid">
+                  {edu.pillars.map((pillar, pIdx) => (
+                    <div key={pIdx} className="edu-pillar-card">
+                      <h4 className="pillar-heading">{pillar.title}</h4>
+                      <p className="pillar-text">{pillar.description}</p>
                     </div>
-                    <div className="highlight-text-content">
-                      <span className="highlight-label">KEY TAKEAWAY</span>
-                      <p className="highlight-text">{exp.highlight}</p>
-                    </div>
-                  </div>
-                )}
-
-                {/* Footer Metadata: Technologies & Project Guide */}
-                <div className="experience-footer-meta">
-                  <div className="experience-tech-stack" aria-label="Technologies used">
-                    <span className="tech-stack-label">TECHNOLOGY:</span>
-                    {exp.technologies.map((tech) => (
-                      <span key={tech} className="tech-badge">
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
-
-                  {exp.projectGuide && (
-                    <div className="experience-guide-meta">
-                      <UserCheck size={13} className="guide-icon" aria-hidden="true" />
-                      <span className="guide-label">Project Guide:</span>
-                      <span className="guide-name">{exp.projectGuide}</span>
-                    </div>
-                  )}
+                  ))}
                 </div>
 
               </div>
-
-            </article>
-          ))}
-        </div>
+            ))}
+          </div>
+        )}
 
       </div>
     </section>

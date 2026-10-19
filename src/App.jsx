@@ -1,20 +1,20 @@
 import React, { useState } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
-import ProjectCard from './components/ProjectCard';
-import ProjectDetailsModal from './components/ProjectDetailsModal';
-import About from './components/About';
+import FeaturedProjects from './components/FeaturedProjects';
 import Skills from './components/Skills';
-import Education from './components/Education';
 import Experience from './components/Experience';
+import About from './components/About';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
-import { projectsData } from './data/portfolioData';
+import ProjectDetailsModal from './components/ProjectDetailsModal';
+import ProjectExplorer from './components/ProjectExplorer';
 import './styles/App.css';
 
 export default function App() {
   const [selectedProject, setSelectedProject] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isExplorerOpen, setIsExplorerOpen] = useState(false);
 
   const handleOpenDetails = (project) => {
     setSelectedProject(project);
@@ -25,6 +25,20 @@ export default function App() {
     setIsModalOpen(false);
   };
 
+  const handleOpenExplorer = () => {
+    setIsExplorerOpen(true);
+  };
+
+  const handleCloseExplorer = () => {
+    setIsExplorerOpen(false);
+  };
+
+  const handleSelectFromExplorer = (project) => {
+    setIsExplorerOpen(false);
+    setSelectedProject(project);
+    setIsModalOpen(true);
+  };
+
   return (
     <div className="portfolio-app-root">
       {/* WCAG Accessible Skip Link */}
@@ -33,64 +47,49 @@ export default function App() {
       </a>
 
       {/* Global Navigation */}
-      <Navbar />
+      <Navbar onOpenExplorer={handleOpenExplorer} />
 
       {/* Main Content Landmark */}
       <main id="main-content">
         
-        {/* Hero Section */}
-        <Hero />
+        {/* Editorial Hero Section with Portrait Frame */}
+        <Hero onOpenExplorer={handleOpenExplorer} />
 
-        {/* Selected Projects Section */}
-        <section className="work-section" id="work" aria-labelledby="work-heading">
-          <div className="container">
-            <div className="section-header">
-              <span className="section-number">[ 01 / SELECTED WORK &amp; CASE STUDIES ]</span>
-              <h2 id="work-heading" className="section-title">
-                Selected Projects
-              </h2>
-              <p className="section-subtitle">
-                Academic and personal software engineering implementations. All features, architecture, and technology contexts verified against project deliverables.
-              </p>
-            </div>
+        {/* Featured Projects (Top 3) */}
+        <FeaturedProjects
+          onOpenDetails={handleOpenDetails}
+          onOpenExplorer={handleOpenExplorer}
+        />
 
-            <div className="projects-grid">
-              {projectsData.map((project) => (
-                <ProjectCard
-                  key={project.id}
-                  project={project}
-                  onOpenDetails={handleOpenDetails}
-                />
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Experience Section */}
-        <Experience />
-
-        {/* About Section */}
-        <About />
-
-        {/* Skills Section */}
+        {/* Technical Capabilities & Skills Explorer */}
         <Skills />
 
-        {/* Education Section */}
-        <Education />
+        {/* Experience, Hackathons & Education */}
+        <Experience />
+
+        {/* Background & Principles */}
+        <About />
 
         {/* Contact Section */}
         <Contact />
 
       </main>
 
-      {/* Global Footer */}
+      {/* Global Editorial Footer */}
       <Footer />
 
-      {/* Project Case Study Native Dialog Modal */}
+      {/* Full Project Case Study Modal (with Architecture Schematics) */}
       <ProjectDetailsModal
         project={selectedProject}
         isOpen={isModalOpen}
         onClose={handleCloseDetails}
+      />
+
+      {/* Interactive Project Archive & Lab Explorer */}
+      <ProjectExplorer
+        isOpen={isExplorerOpen}
+        onClose={handleCloseExplorer}
+        onSelectProject={handleSelectFromExplorer}
       />
     </div>
   );

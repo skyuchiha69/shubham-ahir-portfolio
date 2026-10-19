@@ -1,60 +1,94 @@
-import React from 'react';
-import { skillsData } from '../data/portfolioData';
-import { Terminal, Layout, Database } from 'lucide-react';
+import React, { useState } from 'react';
+import { Terminal, Layout, Database, BarChart2, Wrench, CheckCircle } from 'lucide-react';
+import { skillsCategories } from '../data/portfolioData';
 
 export default function Skills() {
-  const getCategoryIcon = (category) => {
-    switch (category) {
-      case 'Programming & Data':
-        return <Terminal size={18} className="category-icon" aria-hidden="true" />;
-      case 'Frontend':
-        return <Layout size={18} className="category-icon" aria-hidden="true" />;
-      case 'Backend & Databases':
-        return <Database size={18} className="category-icon" aria-hidden="true" />;
+  const [selectedCategory, setSelectedCategory] = useState('all');
+
+  const getCategoryIcon = (id) => {
+    switch (id) {
+      case 'languages':
+        return <Terminal size={17} className="skill-cat-icon" aria-hidden="true" />;
+      case 'frontend':
+        return <Layout size={17} className="skill-cat-icon" aria-hidden="true" />;
+      case 'backend':
+        return <Database size={17} className="skill-cat-icon" aria-hidden="true" />;
+      case 'data':
+        return <BarChart2 size={17} className="skill-cat-icon" aria-hidden="true" />;
+      case 'tools':
+        return <Wrench size={17} className="skill-cat-icon" aria-hidden="true" />;
       default:
-        return null;
+        return <CheckCircle size={17} className="skill-cat-icon" aria-hidden="true" />;
     }
   };
+
+  const displayedCategories = selectedCategory === 'all'
+    ? skillsCategories
+    : skillsCategories.filter((c) => c.id === selectedCategory);
 
   return (
     <section className="skills-section" id="skills" aria-labelledby="skills-section-heading">
       <div className="container">
         
         {/* Section Header */}
-        <div className="section-header">
-          <span className="section-number">[ 04 / TECHNICAL CAPABILITIES ]</span>
-          <h2 id="skills-section-heading" className="section-title">
-            Skills &amp; Technologies
-          </h2>
-          <p className="section-subtitle">
-            Categorized technical tools verified through academic coursework and practical projects.
-          </p>
+        <div className="section-header-row">
+          <div className="section-header-left">
+            <span className="section-number">[ 02 / TECHNICAL CAPABILITIES ]</span>
+            <h2 id="skills-section-heading" className="section-title">
+              Skills &amp; Technologies
+            </h2>
+            <p className="section-subtitle">
+              Verified technical tools applied across coursework, hackathons, and software implementations.
+            </p>
+          </div>
+
+          {/* Category Filter Pills */}
+          <div className="skills-filter-tabs" role="tablist" aria-label="Skills domain filter">
+            <button
+              type="button"
+              role="tab"
+              aria-selected={selectedCategory === 'all'}
+              className={`skill-tab-pill ${selectedCategory === 'all' ? 'is-active' : ''}`}
+              onClick={() => setSelectedCategory('all')}
+            >
+              All Categories
+            </button>
+            {skillsCategories.map((cat) => (
+              <button
+                key={cat.id}
+                type="button"
+                role="tab"
+                aria-selected={selectedCategory === cat.id}
+                className={`skill-tab-pill ${selectedCategory === cat.id ? 'is-active' : ''}`}
+                onClick={() => setSelectedCategory(cat.id)}
+              >
+                {cat.category}
+              </button>
+            ))}
+          </div>
         </div>
 
-        {/* Categories Grid */}
-        <div className="skills-category-grid">
-          {skillsData.map((group) => (
-            <div key={group.category} className="skill-category-card">
+        {/* Compact Editorial Skills Grid */}
+        <div className="skills-editorial-grid">
+          {displayedCategories.map((group) => (
+            <div key={group.id} className="skill-group-card">
               
-              <div className="category-header">
-                <div className="category-title-row">
-                  {getCategoryIcon(group.category)}
-                  <h3 className="category-name">{group.category}</h3>
+              <div className="skill-group-header">
+                <div className="skill-group-title-row">
+                  {getCategoryIcon(group.id)}
+                  <h3 className="skill-group-name">{group.category}</h3>
+                  <span className="skill-count-badge">{group.skills.length}</span>
                 </div>
-                <p className="category-desc">{group.description}</p>
+                <p className="skill-group-desc">{group.description}</p>
               </div>
 
-              <div className="skills-items-list">
+              {/* Compact Chips */}
+              <div className="skill-chips-wrap">
                 {group.skills.map((skill) => (
-                  <div key={skill.name} className="skill-item-row">
-                    <div className="skill-tag-pill">
-                      <span className="pill-dot" aria-hidden="true"></span>
-                      <span className="skill-name">{skill.name}</span>
-                    </div>
-                    <span className="skill-context-text">
-                      {skill.context}
-                    </span>
-                  </div>
+                  <span key={skill} className="skill-editorial-chip">
+                    <span className="chip-dot" aria-hidden="true"></span>
+                    <span className="chip-text">{skill}</span>
+                  </span>
                 ))}
               </div>
 
@@ -62,11 +96,11 @@ export default function Skills() {
           ))}
         </div>
 
-        {/* Honest Note */}
-        <div className="skills-editorial-note">
-          <span className="note-label">NOTE:</span>
-          <p className="note-text">
-            All listed technologies reflect practical application in project implementations (e.g. Rent Wise and Retail Data Analysis). Rather than abstract percentage meters, skills are represented by demonstrated application.
+        {/* Note */}
+        <div className="skills-footer-note">
+          <span className="note-eyebrow">PRACTICAL EVIDENCE:</span>
+          <p className="note-copy">
+            Skills are backed by functional code in repositories rather than arbitrary proficiency percentages.
           </p>
         </div>
 
